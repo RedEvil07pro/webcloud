@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electron Web App</title>
+  <style>
+    /* Reset base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      padding: 20px;
+    }
+
+    /* Contenitore principale */
+    .container {
+      width: 100%;
+      height: 100%;
+      max-width: 1200px; /* Limita la larghezza massima per desktop */
+      max-height: 800px;
+      background-color: white;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    /* Iframe che mostra la pagina web */
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 8px;
+    }
+
+    /* Intestazione della finestra */
+    .header {
+      background-color: #005f6b;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      font-size: 24px;
+      font-weight: bold;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Aggiungi un effetto hover sui bordi del contenitore */
+    .container:hover {
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Link stilizzato */
+    .link {
+      display: block;
+      text-align: center;
+      margin: 20px;
+      font-size: 18px;
+      color: #005f6b;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #f4f4f4;
+      transition: background-color 0.3s ease;
+    }
+
+    .link:hover {
+      background-color: #005f6b;
+      color: white;
+    }
+    
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Header con il titolo della web app -->
+    <div class="header">
+      Cockpit Web Interface
+    </div>
+    
+    <!-- Link cliccabile per aprire la pagina -->
+    <a href="https://87.6.187.116:9090" class="link" target="_blank">
+      Clicca qui per accedere all'interfaccia web
+    </a>
+  </div>
+</body>
+</html>
