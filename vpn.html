@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurazione VPN WireGuard</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Configura la tua VPN WireGuard</h1>
+        <form id="vpnForm">
+            <label for="serverName">Nome del server:</label>
+            <input type="text" id="serverName" name="serverName" required>
+
+            <label for="privateKey">Chiave privata:</label>
+            <input type="text" id="privateKey" name="privateKey" required>
+
+            <label for="publicKey">Chiave pubblica del server:</label>
+            <input type="text" id="publicKey" name="publicKey" required>
+
+            <label for="endpoint">Endpoint (IP:Porta):</label>
+            <input type="text" id="endpoint" name="endpoint" required>
+
+            <label for="allowedIPs">Allowed IPs:</label>
+            <input type="text" id="allowedIPs" name="allowedIPs" required>
+
+            <button type="submit">Crea Configurazione</button>
+        </form>
+        <div id="status"></div>
+    </div>
+
+    <script>
+        document.getElementById("vpnForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const serverName = document.getElementById("serverName").value;
+            const privateKey = document.getElementById("privateKey").value;
+            const publicKey = document.getElementById("publicKey").value;
+            const endpoint = document.getElementById("endpoint").value;
+            const allowedIPs = document.getElementById("allowedIPs").value;
+
+            fetch("/create-vpn", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    serverName,
+                    privateKey,
+                    publicKey,
+                    endpoint,
+                    allowedIPs
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    document.getElementById("status").innerHTML = `<p>Configurazione VPN creata con successo! Scarica il file di configurazione.</p>`;
+                } else {
+                    document.getElementById("status").innerHTML = `<p>Errore nella creazione della configurazione: ${data.message}</p>`;
+                }
+            })
+            .catch(error => {
+                document.getElementById("status").innerHTML = `<p>Errore: ${error.message}</p>`;
+            });
+        });
+    </script>
+</body>
+</html>
